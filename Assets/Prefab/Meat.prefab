@@ -69,6 +69,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -89,9 +90,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cea9e1088c02e44409ec37c2d2394e8e, type: 3}
-  m_Color: {r: 0.71655524, g: 0.07915227, b: 0.89705884, a: 1}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: a41fa8f540cd1be4ba0c94f0de929795, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
