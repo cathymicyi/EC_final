@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour {
 		fixedupdate ();
 	}
 	void fixedupdate (){
-		bool getfarting = Input.GetButton ("Fire1");
+		bool getfarting = Input.GetButton ("Jump");
 		bool moving = Input.GetButton ("Horizontal");
 		float moveHorizontal = Input.GetAxis ("Horizontal")*Time.deltaTime*10.0f;
 		if (getfarting) {
