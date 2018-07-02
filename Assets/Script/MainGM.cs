@@ -5,15 +5,25 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 //including all the UI msg update
 public class MainGM : MonoBehaviour {
-	public static MainGM gm;
+	public static MainGM gm = null;//set this let other script be acessed
 	public Slider GGSBar;
 	public Slider FartBar;
 	public Image LivePref;
+
 	public Canvas sUI;
+
+	private float initFart = 50f;
+
+	private float initGas = 50f;
+
+	private int initLive = 3;
 
 
 	// Use this for initialization
 	void Awake () {
+		if (gm == null)
+			gm = this;
+		
 		Refresh ();
 	}
 
@@ -31,9 +41,9 @@ public class MainGM : MonoBehaviour {
 	}
 	void setDefault()
 	{
-		Player.SetFart (100.0f);
-		Player.SetGGas (10.0f);
-		Player.SetLives (3);
+		Player.SetFart (initFart);
+		Player.SetGGas (initGas);
+		Player.SetLives (initLive);
 		float GGs = Player.GetGGas();
 		GGSBar.value = GGs;
 		LivesGenerates ();
@@ -47,43 +57,57 @@ public class MainGM : MonoBehaviour {
 
 
 
-		if(currentGGS >= 15.0f )//max greenhouse the die
+		if(currentGGS >= 99.0f )//max greenhouse the die
 		{   int currentL = Player.GetLives();
 			
 			if(currentL != 0)
-			{
+			{	
 				GameObject[] destroyL = GameObject.FindGameObjectsWithTag("Lives");
 				currentL--;
 				Destroy(destroyL[currentL]);
 				Player.SetLives(currentL);
-				resetPlayerPos();
+
 			}
 			else
 			{
-				/*To Do if run out all the lives(load menu?)
-							*/
+				load("GameOver");
 			}
 
 		}
+		if(currentGGS <= 20.0f)//save the world
+			load("Level2");
 
 	}
 	void LivesGenerates(){
 		int totalLives = Player.GetLives ();
 		for (int i = 0; i < totalLives; i++) {
 			string names = "Live" + i;
-			Image L = Instantiate (LivePref, new Vector3 (-310 + (i * 3), -120, 0), Quaternion.identity);
-			L.transform.position = new Vector3 (-310 + (i * 10), -120, 0);
+			Vector3 v = new Vector3 ( 120 + (i * 50), -50, 0);
+			Image L = Instantiate (LivePref, v, Quaternion.identity);
+			L.transform.position = v;//my version need this line, otherwise i counld't get right position
+			RectTransform uitransform = L.GetComponent<RectTransform>();
+			uitransform.anchorMin = new Vector2(0, 1);
+			uitransform.anchorMax = new Vector2(0, 1);
+			uitransform.pivot = new Vector2(0.5f, 0.5f);
+			uitransform.localScale = new Vector2(3, 3);
 			L.name = names;
 			L.transform.SetParent (sUI.transform, false);
 
 		}
 	}
 
-	void resetPlayerPos(){
-		Player.SetFart (100.0f);
-		Player.SetGGas (10.0f);
-		//To Do:
-	/**if player die, reset to origin pos and reset greenhouse gas to default value, farting poweraswell**/	
+	public void resetPlayerPos(){
+
+		int lives = Player.GetLives();
+
+		if (lives == 0)
+			load ("GameOver");
+		else {
+			GameObject[] destroyL = GameObject.FindGameObjectsWithTag("Lives");
+			lives--;
+			Destroy(destroyL[lives]);
+			Player.SetLives (lives);
+		}
 	}
 		
 

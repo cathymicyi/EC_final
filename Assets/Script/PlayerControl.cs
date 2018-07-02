@@ -7,12 +7,17 @@ public class PlayerControl : MonoBehaviour {
 	private float force ;
 	private float weight;
 	private Rigidbody2D myrigi;
+
 	//
 	public ParticleSystem ps;
+	public GameObject treePrefb;
+
 	// Use this for initialization
 	void Start () {
+		//TODO: turn those two comment on when testing whole game
 		//weight = Player.GetWeight ();
-		force = 50;//weight;//F = m*g
+		//force = weight*0.8f;//weight;//F = m*g
+		force =40.0f;
 		myrigi = GetComponent<Rigidbody2D>();
 		
 	}
@@ -33,13 +38,13 @@ public class PlayerControl : MonoBehaviour {
 			//ps.enableEmission = true;
 		}
 		if (moving) {
-
 			transform.Translate (moveHorizontal, 0, 0);
 		}
 
 
 
 	}
+
 	void DetectGreenGas(float power, float fart){
 		float currentGGS = Player.GetGGas();
 		currentGGS += power;
@@ -49,6 +54,7 @@ public class PlayerControl : MonoBehaviour {
 		Player.SetFart (currentF);
 
 	}
+
 	void EatFood(Collider2D collider)
 	{
 		if (collider.gameObject.CompareTag("Fruit")) {
@@ -59,28 +65,45 @@ public class PlayerControl : MonoBehaviour {
 			Meat(collider);
 		}
 	}
+
 	void Vegs(Collider2D collider)
 	{
 		//use collider.gameObject.name yo distinguish what kind of vegs //	
 		float vegs = Player.GetFart();
-		vegs += 1.0f;
+		vegs += .5f;
 		Player.SetFart (vegs);
+		vegs = Player.GetGGas ();
+		vegs -= 2.0f;
+		Player.SetGGas (vegs);
+		string tmp = collider.gameObject.name;
+		Vector3 pos = collider.gameObject.transform.position;
 		Destroy (collider.gameObject);
+		createTree (pos, tmp); 
+
 
 	
 	}
+	void createTree(Vector3 position, string vegs){
+		string name = "tree"+vegs;
+		GameObject spawnTree = Instantiate (treePrefb, position, Quaternion.identity);
+		spawnTree.transform.position = position;
+		spawnTree.name = name;
 
-void Meat(Collider2D collider){
+	}
+
+	void Meat(Collider2D collider){
 		//use collider.gameObject.name yo distinguish what kind of meat //	
 		float meat = Player.GetFart();
-		meat += 2.0f;
+		meat += 1.0f;
 		Player.SetFart (meat);
 		meat = Player.GetGGas () + 1.0f;
 		Player.SetGGas (meat);
 		Destroy (collider.gameObject);
+
 	}
-void OnTriggerEnter2D(Collider2D other)
-{
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
 		if (other.gameObject.CompareTag("Fruit")) {
 
 			Vegs (other);
@@ -89,5 +112,5 @@ void OnTriggerEnter2D(Collider2D other)
 			Meat(other);
 		}
 
-}
+	}
 }
