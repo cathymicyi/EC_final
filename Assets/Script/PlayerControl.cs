@@ -108,7 +108,7 @@ public class PlayerControl : MonoBehaviour {
 
 			Vegs (other);
 		}
-		else {
+		else if(other.gameObject.CompareTag("Meat")){
 			Meat(other);
 		}
 

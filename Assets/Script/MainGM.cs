@@ -9,12 +9,14 @@ public class MainGM : MonoBehaviour {
 	public Slider GGSBar;
 	public Slider FartBar;
 	public Image LivePref;
+	public GameObject playerInipos;
 
 	public Canvas sUI;
 
 	private float initFart = 50f;
 
 	private float initGas = 50f;
+	private Vector3 IniPosion;
 
 	private int initLive = 3;
 
@@ -23,7 +25,8 @@ public class MainGM : MonoBehaviour {
 	void Awake () {
 		if (gm == null)
 			gm = this;
-		
+
+		IniPosion = playerInipos.transform.position;
 		Refresh ();
 	}
 
@@ -100,13 +103,15 @@ public class MainGM : MonoBehaviour {
 
 		int lives = Player.GetLives();
 
-		if (lives == 0)
+		if (lives == 1) {
 			load ("GameOver");
+		}
 		else {
 			GameObject[] destroyL = GameObject.FindGameObjectsWithTag("Lives");
 			lives--;
 			Destroy(destroyL[lives]);
 			Player.SetLives (lives);
+			playerInipos.transform.position = IniPosion;
 		}
 	}
 		

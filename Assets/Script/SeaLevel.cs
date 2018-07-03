@@ -34,7 +34,7 @@ public class SeaLevel : MonoBehaviour {
 
 	}
 	void DetectPlayer(){
-		//TODO: have to add cllider, to detect player inside sea or not, yes => die
+		//TODO: have to add collider, to detect player inside sea or not, yes => die
 		//same method as Enemy
 	}
 }

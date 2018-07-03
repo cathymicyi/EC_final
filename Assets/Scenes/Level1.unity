@@ -143,6 +143,7 @@ MonoBehaviour:
   GGSBar: {fileID: 1861882454}
   FartBar: {fileID: 333924761}
   LivePref: {fileID: 114635362619875960, guid: 99a1dcff2bac84f84912cc34aeb8972f, type: 2}
+  playerInipos: {fileID: 608068231}
   sUI: {fileID: 985169348}
 --- !u!4 &88515348
 Transform:

@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 	void Bearposition(){
-	//TODO: bear y position should update with sea level
+	//TODO: bear y position should update with sea level???
 	
 	}
 
