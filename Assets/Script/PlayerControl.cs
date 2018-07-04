@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour {
 	//
 	public ParticleSystem ps;
 	public GameObject treePrefb;
-
+	private float currentenergy;
 	// Use this for initialization
 	void Start () {
 		//TODO: turn those two comment on when testing whole game
@@ -19,12 +19,13 @@ public class PlayerControl : MonoBehaviour {
 		//force = weight*0.8f;//weight;//F = m*g
 		force =40.0f;
 		myrigi = GetComponent<Rigidbody2D>();
+		currentenergy = Player.GetFart ();
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		currentenergy = Player.GetFart ();
 		fixedupdate ();
 	}
 	void fixedupdate (){
@@ -32,9 +33,14 @@ public class PlayerControl : MonoBehaviour {
 		bool moving = Input.GetButton ("Horizontal");
 		float moveHorizontal = Input.GetAxis ("Horizontal")*Time.deltaTime*10.0f;
 		if (getfarting) {
-			myrigi.AddForce (new Vector2 (moveHorizontal, force));
-			ps.Play ();
-			DetectGreenGas (.05f, -0.1f);
+			if (currentenergy > 0.0f) {
+				myrigi.AddForce (new Vector2 (moveHorizontal, force));
+				ps.Play ();
+				DetectGreenGas (.05f, -0.1f);
+			} else {
+				myrigi.AddForce (new Vector2 (moveHorizontal, 0.0f));	
+			
+			}
 			//ps.enableEmission = true;
 		}
 		if (moving) {
