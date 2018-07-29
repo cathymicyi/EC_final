@@ -11,10 +11,9 @@ public class SeaLevel : MonoBehaviour {
 
 	// Update is called once per frame
 	void Start(){
-
 		check = Player.GetFart ();
-
 	}
+
 	void Update () {
 		float tmp = Player.GetGGas ();
 
@@ -25,16 +24,17 @@ public class SeaLevel : MonoBehaviour {
 				movingSea (tmp);//go up
 			check = tmp;
 		}
-		DetectPlayer ();
-
 	}
+
 	void movingSea(float gasLevel){		
-			//float currentLevel = transform.position.y;
-			transform.Translate (Vector2.up * speed * gasLevel * Time.deltaTime);
-
+		//float currentLevel = transform.position.y;
+		transform.Translate (Vector2.up * speed * gasLevel * Time.deltaTime);
 	}
-	void DetectPlayer(){
-		//TODO: have to add collider, to detect player inside sea or not, yes => die
-		//same method as Enemy
+
+	void OnTriggerEnter2D(Collider2D other) {
+
+		if (other.gameObject.CompareTag("Player")) {
+			MainGM.gm.resetPlayerPos ();
+		}
 	}
 }

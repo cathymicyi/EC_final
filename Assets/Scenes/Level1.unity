@@ -144,6 +144,7 @@ MonoBehaviour:
   FartBar: {fileID: 333924761}
   LivePref: {fileID: 114635362619875960, guid: 99a1dcff2bac84f84912cc34aeb8972f, type: 2}
   playerInipos: {fileID: 608068231}
+  seaObj: {fileID: 712710913}
   sUI: {fileID: 985169348}
 --- !u!4 &88515348
 Transform:
@@ -434,7 +435,6 @@ GameObject:
   m_Component:
   - component: {fileID: 408554134}
   - component: {fileID: 408554135}
-  - component: {fileID: 408554136}
   m_Layer: 0
   m_Name: Wave
   m_TagString: Untagged
@@ -499,31 +499,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!61 &408554136
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 408554133}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
-  m_UsedByComposite: 1
-  m_Offset: {x: 0, y: -2}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 18.9, y: 14.17}
-    newSize: {x: 820.2967, y: 14.17}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 2
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 820, y: 6.17}
-  m_EdgeRadius: 0
 --- !u!1 &551193436
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 712710914}
   - component: {fileID: 712710915}
+  - component: {fileID: 712710916}
   m_Layer: 0
   m_Name: Sea
   m_TagString: Untagged
@@ -980,6 +956,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828642370315242bcae0e52aa0a6a679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &712710916
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712710913}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: -6.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 150, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &770271101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,7 +2262,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1656523085}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -17.5, z: 1}
+  m_LocalPosition: {x: 0, y: -17.05, z: 1}
   m_LocalScale: {x: 2000, y: 200, z: 1}
   m_Children: []
   m_Father: {fileID: 712710914}

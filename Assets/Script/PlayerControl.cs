@@ -15,9 +15,9 @@ public class PlayerControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//TODO: turn those two comment on when testing whole game
-		//weight = Player.GetWeight ();
-		//force = weight*0.8f;//weight;//F = m*g
-		force =40.0f;
+		weight = Player.GetWeight ();
+		force = weight*0.8f;//weight;//F = m*g
+		//force =40.0f;
 		myrigi = GetComponent<Rigidbody2D>();
 		currentenergy = Player.GetFart ();
 		

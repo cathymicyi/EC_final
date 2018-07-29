@@ -10,6 +10,7 @@ public class MainGM : MonoBehaviour {
 	public Slider FartBar;
 	public Image LivePref;
 	public GameObject playerInipos;
+	public GameObject seaObj;
 
 	public Canvas sUI;
 
@@ -17,6 +18,8 @@ public class MainGM : MonoBehaviour {
 
 	private float initGas = 50f;
 	private Vector3 IniPosion;
+	private Vector3 iniSeaLevel;
+
 
 	private int initLive = 3;
 
@@ -27,6 +30,7 @@ public class MainGM : MonoBehaviour {
 			gm = this;
 
 		IniPosion = playerInipos.transform.position;
+		iniSeaLevel = seaObj.transform.position;
 		Refresh ();
 	}
 
@@ -112,9 +116,9 @@ public class MainGM : MonoBehaviour {
 			Destroy(destroyL[lives]);
 			Player.SetLives (lives);
 			playerInipos.transform.position = IniPosion;
+			seaObj.transform.position = iniSeaLevel;
+
 		}
 	}
 		
-
-
 }
